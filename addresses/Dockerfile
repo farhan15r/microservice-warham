@@ -11,6 +11,6 @@ RUN npm install -g prisma
 
 COPY ./ /app
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["sh", "-c", "npx prisma generate && npm start"]
