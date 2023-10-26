@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contacts-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: contacts-app
+  template:
+    metadata:
+      labels:
+        app: contacts-app
+    spec:
+      containers:
+        - name: contacts-app
+          image: {image......}
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-db-password
+                  key: db-password  
+          ports: 
+            - containerPort: 3000     
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: contacts-srv
+spec:
+  selector:
+    app: contacts-app
+  ports:
+    - name: addresss
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

@@ -6,19 +6,19 @@ printf "Completed.\n\n"
 
 printf "build docker for each directory...\n"
 cd ./addresses
-gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/addresses:1.0.0 .
+gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/addresses:latest .
 printf "Completed Building addresses Container...\n\n"
 
 
 
 printf "Building user Container...\n"
 cd ../user
-gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/user:1.0.0 .
+gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/user:latest .
 printf "Completed Building user...\n\n"
 
 printf "Building contact Container...\n"
 cd ../contact
-gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/contact:1.0.0 .
+gcloud builds submit --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/contact:latest .
 printf "Completed building contact....\n\n"
 
 
