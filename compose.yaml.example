@@ -51,4 +51,17 @@ services:
     depends_on:
       - mysql
   
-
+  fe:
+    build: ./fe
+    restart: always
+    ports:
+      - 2000:2000
+    environment:
+      - NEXT_PUBLIC_API_USERS_SERVICE=http://localhost:3000 //must can access from external
+        NEXT_PUBLIC_API_CONTACS_SERVICE=http://localhost:4000 //must can access from external
+    networks:
+      - micro-app
+    depends_on:
+      - user-service
+      - contact-service
+  
