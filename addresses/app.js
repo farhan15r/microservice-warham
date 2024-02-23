@@ -3,10 +3,11 @@ import { logger } from './db/databases.js';
 import { prismaClient } from './db/databases.js';
 import {errorMiddleware} from "./middleware/error-middleware.js";
 import {userRouter} from "./route/api.js";
+import cors from 'cors';
 
 const app = express();
 
-
+app.use(cors());
 app.use(express.json());
 app.use(userRouter)
 
