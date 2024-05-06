@@ -24,10 +24,10 @@ export default function Page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const loginUrl = process.env.NEXT_PUBLIC_API_USERS_SERVICE + "/api/users";
+    const loginUrl = "/api/users";
     try {
       const response = await axios.post(loginUrl, form);
-      setSuccess("Registration successful!, Please login.")
+      setSuccess("Registration successful!, Please login.");
     } catch (error) {
       setError(error.response.data.errors);
       setTimeout(() => {

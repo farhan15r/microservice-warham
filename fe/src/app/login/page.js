@@ -24,8 +24,7 @@ export default function Page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const loginUrl =
-      process.env.NEXT_PUBLIC_API_USERS_SERVICE + "/api/users/login";
+    const loginUrl = "/api/users/login";
     try {
       const response = await axios.post(loginUrl, form);
       const token = response.data.data.token;

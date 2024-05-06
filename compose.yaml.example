@@ -8,8 +8,8 @@ services:
   mysql:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: <password>
-      MYSQL_DATABASE: <db_name>
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db_name
     ports:
       - 3306:3306
     networks:
@@ -17,11 +17,11 @@ services:
 
   address-service:
     build: ./addresses
-    ports:
-      - 5000:5000
+    # ports:
+    #   - 5000:5000
     restart: always
     environment:
-      - DATABASE_URL=mysql://<user>:<password>@localhost:3306/<db_name>
+      - DATABASE_URL=mysql://root:password@mysql:3306/db_name
     networks:
       - micro-app
     depends_on:
@@ -29,11 +29,11 @@ services:
 
   user-service:
     build: ./user
-    ports:
-      - 3000:3000
+    # ports:
+    #   - 3000:3000
     restart: always
     environment:
-      - DATABASE_URL=mysql://<user>:<password>@localhost:3306/<db_name>
+      - DATABASE_URL=mysql://root:password@mysql:3306/db_name
     networks:
       - micro-app
     depends_on:
@@ -42,26 +42,25 @@ services:
   contact-service:
     build: ./contact
     restart: always
-    ports:
-      - 4000:4000
+    # ports:
+    #   - 4000:4000
     environment:
-      - DATABASE_URL=mysql://<user>:<password>@localhost:3306/<db_name>
+      - DATABASE_URL=mysql://root:password@mysql:3306/db_name
     networks:
       - micro-app
     depends_on:
       - mysql
-  
+
   fe:
     build: ./fe
     restart: always
     ports:
       - 2000:2000
     environment:
-      - NEXT_PUBLIC_API_USERS_SERVICE=http://localhost:3000 //must can access from external
-        NEXT_PUBLIC_API_CONTACS_SERVICE=http://localhost:4000 //must can access from external
+      - USER_SERVICE_URL=http://user-service:3000
+      - CONTACTS_SERVICE_URL=http://contact-service:4000
     networks:
       - micro-app
     depends_on:
       - user-service
       - contact-service
-  

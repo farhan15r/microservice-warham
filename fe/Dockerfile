@@ -8,8 +8,6 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
-
 EXPOSE 2000
 
-CMD ["npm", "start"]
+CMD ["sh", "-c", "npm run build && npm run start"]

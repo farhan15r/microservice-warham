@@ -6,8 +6,7 @@ export default function Logout() {
 
   const handleLogout = async () => {
     const token = localStorage.getItem("token");
-    const logoutUrl =
-      process.env.NEXT_PUBLIC_API_USERS_SERVICE + "/api/users/logout";
+    const logoutUrl = "/api/users/logout";
 
     try {
       await axios.delete(logoutUrl, {

@@ -32,8 +32,7 @@ export default function FormContact({ getContacs }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    const contactUrl =
-      process.env.NEXT_PUBLIC_API_CONTACS_SERVICE + "/api/contacts";
+    const contactUrl = "/api/contacts";
 
     try {
       await axios.post(contactUrl, form, {

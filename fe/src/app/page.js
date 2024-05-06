@@ -13,8 +13,7 @@ export default function Home() {
   const router = useRouter();
 
   const getContacs = async () => {
-    const contactUrl =
-      process.env.NEXT_PUBLIC_API_CONTACS_SERVICE + "/api/contacts";
+    const contactUrl = "/api/contacts";
 
     const response = await axios.get(contactUrl, {
       headers: {
